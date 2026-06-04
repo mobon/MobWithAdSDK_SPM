@@ -22,6 +22,7 @@
 		BD16D2942E12376D001AEFDC /* DHPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D2922E12376D001AEFDC /* DHPaddedLabel.swift */; };
 		BD16D2952E12376D001AEFDC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D2932E12376D001AEFDC /* UIView+Extension.swift */; };
 		BD16D2972E12377F001AEFDC /* MediaCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16D2962E12377F001AEFDC /* MediaCodes.swift */; };
+		BD68D3322FD1575500E55A6B /* MobWithADSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BD68D3312FD1575500E55A6B /* MobWithADSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD68D3322FD1575500E55A6B /* MobWithADSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +164,9 @@
 				Base,
 			);
 			mainGroup = 6AD5DEFB28DD4EEE00CC6C30;
+			packageReferences = (
+				BD68D3302FD1575500E55A6B /* XCRemoteSwiftPackageReference "MobWithAdSDK_SPM" */,
+			);
 			productRefGroup = 6AD5DF0528DD4EEE00CC6C30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -452,6 +457,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD68D3302FD1575500E55A6B /* XCRemoteSwiftPackageReference "MobWithAdSDK_SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:mobon/MobWithAdSDK_SPM.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD68D3312FD1575500E55A6B /* MobWithADSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD68D3302FD1575500E55A6B /* XCRemoteSwiftPackageReference "MobWithAdSDK_SPM" */;
+			productName = MobWithADSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AD5DEFC28DD4EEE00CC6C30 /* Project object */;
 }

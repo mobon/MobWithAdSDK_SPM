@@ -1,0 +1,15 @@
+{
+  "originHash" : "436ce3b537c82f8bb2496cf1564574dfcf8c99853430e707c9577ba1b09c08f1",
+  "pins" : [
+    {
+      "identity" : "mobwithadsdk_spm",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:mobon/MobWithAdSDK_SPM.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5e521006fd4089722e11dc05592171cb8f8dacf7"
+      }
+    }
+  ],
+  "version" : 3
+}
