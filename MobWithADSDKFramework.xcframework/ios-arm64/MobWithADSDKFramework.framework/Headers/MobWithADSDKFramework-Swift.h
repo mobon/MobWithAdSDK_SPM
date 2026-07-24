@@ -372,11 +372,29 @@ typedef SWIFT_ENUM(NSInteger, MMBannerType, open) {
   MMBannerTypeBANNER_300x250 = 2,
 };
 
+SWIFT_CLASS("_TtC21MobWithADSDKFramework20MMHybridBannerBridge")
+@interface MMHybridBannerBridge : NSObject
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable category;
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable campaignCodes;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework28MMHybridBannerBridgeDelegate_")
+@protocol MMHybridBannerBridgeDelegate
+@optional
+- (void)mobWithHybridBannerBridgeAdClicked:(MMHybridBannerBridge * _Nullable)bridge;
+- (void)mobWithHybridBannerBridgeAdLoadFailed:(MMHybridBannerBridge * _Nullable)bridge;
+@end
+
 @class UIImageView;
 @class UIButton;
+@class NSBundle;
 SWIFT_CLASS("_TtC21MobWithADSDKFramework14MMNativeAdView")
 @interface MMNativeAdView : UIView
 @property (nonatomic, weak) id <MobWithADViewDelegate> _Nullable adDelegate;
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable category;
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable campaignCodes;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 /// Native AD View
@@ -400,7 +418,9 @@ SWIFT_CLASS("_TtC21MobWithADSDKFramework14MMNativeAdView")
 /// \param infoLogoImageView 광고 Info Logo를 표시할 ImageView. Tag값 설정 필요
 ///
 - (nonnull instancetype)initWithBannerUnitId:(NSString * _Nonnull)bannerUnitId adContainerView:(UIView * _Nullable)adContainerView nativeAdRootView:(UIView * _Nullable)nativeAdRootView adImageView:(UIImageView * _Nullable)adImageView logoImageView:(UIImageView * _Nullable)logoImageView titleLabel:(UILabel * _Nullable)titleLabel descriptionLabel:(UILabel * _Nullable)descriptionLabel gotoSiteButton:(UIButton * _Nullable)gotoSiteButton infoLogoImageView:(UIImageView * _Nullable)infoLogoImageView mediaView:(UIView * _Nullable)mediaView OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithBannerUnitId:(NSString * _Nonnull)bannerUnitId adContainerView:(UIView * _Nullable)adContainerView nibNameForDefault:(NSString * _Nonnull)nibNameForDefault nibNameForDirectAd:(NSString * _Nonnull)nibNameForDirectAd bundle:(NSBundle * _Nullable)bundle OBJC_DESIGNATED_INITIALIZER;
 - (void)loadAd;
+- (void)destroy;
 @end
 
 @interface MMNativeAdView (SWIFT_EXTENSION(MobWithADSDKFramework))
@@ -447,7 +467,6 @@ SWIFT_CLASS("_TtC21MobWithADSDKFramework10MMSplashAd")
 @property (nonatomic, weak) id <MMSplashAdDelegate> _Nullable delegate;
 @property (nonatomic) BOOL useFullScreenAd;
 @property (nonatomic) NSInteger timeOutSec;
-@property (nonatomic, copy) NSArray<NSString *> * _Nullable category;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -496,13 +515,25 @@ SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework25MWAdapterSDKInitializable_")
 
 typedef SWIFT_ENUM(NSInteger, MWAdapterType, open) {
   MWAdapterTypeAdmob = 0,
-  MWAdapterTypePangle = 1,
-  MWAdapterTypeInMobi = 2,
-  MWAdapterTypeKakao = 3,
-  MWAdapterTypeLevelPlay = 4,
-  MWAdapterTypeDtExchange = 5,
-  MWAdapterTypeAdop = 6,
-  MWAdapterTypeCauly = 7,
+  MWAdapterTypeAdManager = 1,
+  MWAdapterTypePangle = 2,
+  MWAdapterTypeInMobi = 3,
+  MWAdapterTypeKakao = 4,
+  MWAdapterTypeLevelPlay = 5,
+  MWAdapterTypeDtExchange = 6,
+  MWAdapterTypeAdop = 7,
+  MWAdapterTypeCauly = 8,
+};
+
+SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework21MWSignalInitializable_")
+@protocol MWSignalInitializable
++ (void)initializeSDKWithConfig:(NSDictionary<NSString *, id> * _Nullable)config;
++ (NSString * _Nullable)getSignalData SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)getVersion SWIFT_WARN_UNUSED_RESULT;
+@end
+
+typedef SWIFT_ENUM(NSInteger, MWSignalType, open) {
+  MWSignalTypeArgus = 0,
 };
 
 /// MobMixerSDK 기본 관리 클래스
@@ -596,7 +627,6 @@ SWIFT_CLASS("_TtC21MobWithADSDKFramework21MobWithInterstitailAd")
 @end
 
 @protocol MobWithNativeAdLoaderDelegate;
-@class NSBundle;
 @class NSIndexPath;
 SWIFT_CLASS("_TtC21MobWithADSDKFramework21MobWithNativeAdLoader")
 @interface MobWithNativeAdLoader : NSObject

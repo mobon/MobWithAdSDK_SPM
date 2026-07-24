@@ -2,9 +2,15 @@
      const placementId = '__PLACEMENT_ID__';
      const customBridgeName = '__BRIDGE_NAME__';
      const html = '__HTML__';
+     const os = '__OS__';
      
-     const container = document.querySelector('.mobwith-banner[data-placement-id="' + placementId + '"]');
-          
+     const selector =
+         os === 'iOS'
+             ? `.mobwith-banner[data-placement-id-ios="${placementId}"]`
+             : `.mobwith-banner[data-placement-id-android="${placementId}"]`;
+
+     const container = document.querySelector(selector);
+     
      if (!container) {
          return;
      }
@@ -17,6 +23,7 @@
      const iframe = document.createElement('iframe');
 
      iframe.style.width = '100%';
+     iframe.style.height = '0px';
      iframe.style.border = '0';
      iframe.style.display = 'block';
      iframe.style.overflow = 'hidden';

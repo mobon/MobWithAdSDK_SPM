@@ -17,6 +17,28 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+@objc public enum MWSignalType : ObjectiveC.NSInteger {
+  case argus
+  public var string: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: ObjectiveC.NSInteger)
+  #endif
+  public typealias RawValue = ObjectiveC.NSInteger
+  public var rawValue: ObjectiveC.NSInteger {
+    get
+  }
+}
+@objc public protocol MWSignalInitializable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc static func initializeSDK(config: [Swift.String : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc static func getSignalData() -> Swift.String?
+  #endif
+  @objc static func getVersion() -> Swift.String
+}
 @objc @_inheritsConvenienceInitializers public class MobWithInterstitailAd : ObjectiveC.NSObject {
   @objc weak public var adDelegate: (any MobWithADSDKFramework.MobWithIntersitialAdDelegate)?
   public var rootViewController: UIKit.UIViewController? {
@@ -240,6 +262,7 @@ public struct VMAPExtension {
 }
 @objc public enum MWAdapterType : ObjectiveC.NSInteger {
   case admob
+  case adManager
   case pangle
   case inMobi
   case kakao
@@ -537,9 +560,19 @@ public struct VastAdSystem : Swift.Codable {
 extension MobWithADSDKFramework.VastAdSystem : Swift.Equatable {
   public static func == (a: MobWithADSDKFramework.VastAdSystem, b: MobWithADSDKFramework.VastAdSystem) -> Swift.Bool
 }
-public class MMHybridBannerBridge {
+@objc public protocol MMHybridBannerBridgeDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc optional func mobWithHybridBannerBridgeAdClicked(_ bridge: MobWithADSDKFramework.MMHybridBannerBridge?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc optional func mobWithHybridBannerBridgeAdLoadFailed(_ bridge: MobWithADSDKFramework.MMHybridBannerBridge?)
+  #endif
+}
+@objc public class MMHybridBannerBridge : ObjectiveC.NSObject {
   final public let bridgeName: Swift.String
-  public var category: [Swift.String]?
+  public var adDelegate: (any MobWithADSDKFramework.MMHybridBannerBridgeDelegate)?
+  @objc public var category: [Swift.String]?
+  @objc public var campaignCodes: [Swift.String]?
   public init(webVeiw: WebKit.WKWebView)
   public func webViewFinishLoad(_ view: WebKit.WKWebView)
   public func handleBridgeMessage(_ message: WebKit.WKScriptMessage) -> Swift.Bool
@@ -894,7 +927,6 @@ extension MobWithADSDKFramework.VastPricing : Swift.Equatable {
   @objc weak public var delegate: (any MobWithADSDKFramework.MMSplashAdDelegate)?
   @objc public var useFullScreenAd: Swift.Bool
   @objc public var timeOutSec: Swift.Int
-  @objc public var category: [Swift.String]?
   public init(viewController: UIKit.UIViewController, unitId: Swift.String)
   public func loadAd()
   public func destroy()
@@ -1132,12 +1164,18 @@ extension MobWithADSDKFramework.MobWithAdView {
     set
   }
   @objc @_Concurrency.MainActor @preconcurrency weak public var adDelegate: (any MobWithADSDKFramework.MobWithADViewDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public var category: [Swift.String]?
+  @objc @_Concurrency.MainActor @preconcurrency public var campaignCodes: [Swift.String]?
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
   #if compiler(>=5.3) && $NonescapableTypes
   @objc @_Concurrency.MainActor @preconcurrency public init(bannerUnitId: Swift.String, adContainerView: UIKit.UIView?, nativeAdRootView: UIKit.UIView?, adImageView: UIKit.UIImageView?, logoImageView: UIKit.UIImageView?, titleLabel: UIKit.UILabel?, descriptionLabel: UIKit.UILabel?, gotoSiteButton: UIKit.UIButton?, infoLogoImageView: UIKit.UIImageView?, mediaView: UIKit.UIView? = nil)
   #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency public init(bannerUnitId: Swift.String, adContainerView: UIKit.UIView?, nibNameForDefault: Swift.String, nibNameForDirectAd: Swift.String = "", bundle: Foundation.Bundle?)
+  #endif
   @objc @_Concurrency.MainActor @preconcurrency public func loadAd()
   @_Concurrency.MainActor @preconcurrency public func showNextAd()
+  @objc @_Concurrency.MainActor @preconcurrency public func destroy()
   @objc deinit
 }
 extension MobWithADSDKFramework.MMNativeAdView {
@@ -1293,6 +1331,32 @@ public protocol MobwithNativeAdViewRender {
   #if compiler(>=5.3) && $NonescapableTypes
   func getInfoLogoImageView() -> UIKit.UIImageView?
   #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  func getMediaView() -> UIKit.UIView?
+  #endif
+}
+extension MobWithADSDKFramework.MobwithNativeAdViewRender {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getAdImageView() -> UIKit.UIImageView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getAdLogoImageView() -> UIKit.UIImageView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getAdTitleLabel() -> UIKit.UILabel?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getAdDescriptionLabel() -> UIKit.UILabel?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getGoToSiteButton() -> UIKit.UIButton?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getInfoLogoImageView() -> UIKit.UIImageView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getMediaView() -> UIKit.UIView?
+  #endif
 }
 @_hasMissingDesignatedInitializers public class MobwithNativeAdView {
   @objc deinit
@@ -1349,6 +1413,9 @@ extension UIKit.UIImage {
   @objc override dynamic public init()
   @objc deinit
 }
+extension MobWithADSDKFramework.MWSignalType : Swift.Equatable {}
+extension MobWithADSDKFramework.MWSignalType : Swift.Hashable {}
+extension MobWithADSDKFramework.MWSignalType : Swift.RawRepresentable {}
 extension MobWithADSDKFramework.ApiError : Swift.Equatable {}
 extension MobWithADSDKFramework.ApiError : Swift.Hashable {}
 extension MobWithADSDKFramework.MMAdType : Swift.Equatable {}
