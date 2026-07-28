@@ -570,11 +570,12 @@ extension MobWithADSDKFramework.VastAdSystem : Swift.Equatable {
 }
 @objc public class MMHybridBannerBridge : ObjectiveC.NSObject {
   final public let bridgeName: Swift.String
-  public var adDelegate: (any MobWithADSDKFramework.MMHybridBannerBridgeDelegate)?
+  weak public var adDelegate: (any MobWithADSDKFramework.MMHybridBannerBridgeDelegate)?
   @objc public var category: [Swift.String]?
   @objc public var campaignCodes: [Swift.String]?
   public init(webVeiw: WebKit.WKWebView)
   public func webViewFinishLoad(_ view: WebKit.WKWebView)
+  public func destroy()
   public func handleBridgeMessage(_ message: WebKit.WKScriptMessage) -> Swift.Bool
   @objc deinit
 }

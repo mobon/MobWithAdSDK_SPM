@@ -18694,17 +18694,8 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "(any MobWithADSDKFramework.MMHybridBannerBridgeDelegate)?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "MMHybridBannerBridgeDelegate",
-                    "printedName": "any MobWithADSDKFramework.MMHybridBannerBridgeDelegate",
-                    "usr": "c:@M@MobWithADSDKFramework@objc(pl)MMHybridBannerBridgeDelegate"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "WeakStorage",
+                "printedName": "(any MobWithADSDKFramework.MMHybridBannerBridgeDelegate)?"
               }
             ],
             "declKind": "Var",
@@ -18714,8 +18705,10 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
+              "ReferenceOwnership",
               "AccessControl"
             ],
+            "ownership": 1,
             "hasStorage": true,
             "accessors": [
               {
@@ -19126,6 +19119,26 @@
             "declKind": "Func",
             "usr": "s:21MobWithADSDKFramework20MMHybridBannerBridgeC17webViewFinishLoadyySo05WKWebH0CF",
             "mangledName": "$s21MobWithADSDKFramework20MMHybridBannerBridgeC17webViewFinishLoadyySo05WKWebH0CF",
+            "moduleName": "MobWithADSDKFramework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "destroy",
+            "printedName": "destroy()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21MobWithADSDKFramework20MMHybridBannerBridgeC7destroyyyF",
+            "mangledName": "$s21MobWithADSDKFramework20MMHybridBannerBridgeC7destroyyyF",
             "moduleName": "MobWithADSDKFramework",
             "declAttributes": [
               "AccessControl"
@@ -49198,7 +49211,7 @@
     {
       "filePath": "\/Users\/enliplemacbook\/Desktop\/MobMixer\/iOS Split\/MobMixerFramework\/MobMixerFramework\/Views\/MMHybridBannerBridge.swift",
       "kind": "BooleanLiteral",
-      "offset": 1076,
+      "offset": 1081,
       "length": 5,
       "value": "false"
     },
