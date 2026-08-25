@@ -384,7 +384,7 @@ SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework28MMHybridBannerBridgeDelegate_")
 @protocol MMHybridBannerBridgeDelegate
 @optional
 - (void)mobWithHybridBannerBridgeAdClicked:(MMHybridBannerBridge * _Nullable)bridge;
-- (void)mobWithHybridBannerBridgeAdLoadFailed:(MMHybridBannerBridge * _Nullable)bridge;
+- (void)mobWithHybridBannerBridgeAdLoadFailed:(MMHybridBannerBridge * _Nullable)bridge zoneId:(NSString * _Nonnull)zoneId zoneType:(NSString * _Nonnull)zoneType;
 @end
 
 @class UIImageView;
@@ -486,6 +486,9 @@ SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework13MWAdapterBase_")
 - (void)setDelegateWithDelegate:(id <MWAdapterDelegate> _Nullable)delegate;
 - (void)setRootViewControllerWithRootViewController:(UIViewController * _Nullable)rootViewController;
 - (void)setNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
+@optional
+- (void)setNAMNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
+@required
 - (BOOL)loadAdWithAdRequestInfo:(MMAdRequestInfo * _Nonnull)adRequestInfo SWIFT_WARN_UNUSED_RESULT;
 - (UIView * _Nullable)getAdViewWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)showAdWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
@@ -523,12 +526,14 @@ typedef SWIFT_ENUM(NSInteger, MWAdapterType, open) {
   MWAdapterTypeDtExchange = 6,
   MWAdapterTypeAdop = 7,
   MWAdapterTypeCauly = 8,
+  MWAdapterTypeAdpopcorn = 9,
 };
 
+@class NSData;
 SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework21MWSignalInitializable_")
 @protocol MWSignalInitializable
 + (void)initializeSDKWithConfig:(NSDictionary<NSString *, id> * _Nullable)config;
-+ (NSString * _Nullable)getSignalData SWIFT_WARN_UNUSED_RESULT;
++ (NSData * _Nullable)getSignalData SWIFT_WARN_UNUSED_RESULT;
 + (NSString * _Nonnull)getVersion SWIFT_WARN_UNUSED_RESULT;
 @end
 
@@ -551,6 +556,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /// SDK 정보를 초기화 한다.
 - (void)initSDK SWIFT_METHOD_FAMILY(none);
 - (void)enableLog:(BOOL)enable;
+- (void)setAdPopcornAppKey:(NSString * _Nonnull)appKey;
 - (void)setLevelPlaySDKAppKey:(NSString * _Nonnull)appKey;
 - (void)setPangleAppIdWithAppId:(NSString * _Nonnull)appId;
 - (void)setDTExchangeAppIDWithAppId:(NSString * _Nonnull)appId;
