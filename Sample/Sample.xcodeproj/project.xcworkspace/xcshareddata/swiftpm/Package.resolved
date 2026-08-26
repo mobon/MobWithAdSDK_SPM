@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:mobon/MobWithAdSDK_SPM.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "9f657124b2022de361189db4dd7ab34ea0221056"
+        "revision" : "bc3c09941e50ec434afaf84dbc92e6128d3e210d",
+        "version" : "1.3.24"
       }
     }
   ],
