@@ -830,9 +830,6 @@ public enum VMAPError : Swift.Error {
   #if compiler(>=5.3) && $NonescapableTypes
   @objc func setNativeAdViewItem(nativeAdViewItem: MobWithADSDKFramework.NativeAdViewItem?)
   #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc optional func setNAMNativeAdViewItem(nativeAdViewItem: MobWithADSDKFramework.NativeAdViewItem?)
-  #endif
   @objc func loadAd(adRequestInfo: MobWithADSDKFramework.MMAdRequestInfo) -> Swift.Bool
   #if compiler(>=5.3) && $NonescapableTypes
   @objc func getAdView(type: MobWithADSDKFramework.MMAdType) -> UIKit.UIView?
@@ -931,7 +928,6 @@ extension MobWithADSDKFramework.VastPricing : Swift.Equatable {
 }
 @objc public class MMSplashAd : ObjectiveC.NSObject {
   @objc weak public var delegate: (any MobWithADSDKFramework.MMSplashAdDelegate)?
-  @objc public var useFullScreenAd: Swift.Bool
   @objc public var timeOutSec: Swift.Int
   public init(viewController: UIKit.UIViewController, unitId: Swift.String)
   public func loadAd()
@@ -1100,6 +1096,7 @@ extension MobWithADSDKFramework.VastMediaFiles : Swift.Equatable {
   }
   @objc public func initSDK()
   @objc public func enableLog(_ enable: Swift.Bool)
+  @objc public func enableDebugMode(_ enable: Swift.Bool)
   @objc public func setAdPopcornAppKey(_ appKey: Swift.String)
   @objc public func setLevelPlaySDKAppKey(_ appKey: Swift.String)
   @objc public func setPangleAppId(appId: Swift.String)

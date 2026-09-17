@@ -465,7 +465,6 @@ SWIFT_CLASS("_TtC21MobWithADSDKFramework9MMPopUpAd")
 SWIFT_CLASS("_TtC21MobWithADSDKFramework10MMSplashAd")
 @interface MMSplashAd : NSObject
 @property (nonatomic, weak) id <MMSplashAdDelegate> _Nullable delegate;
-@property (nonatomic) BOOL useFullScreenAd;
 @property (nonatomic) NSInteger timeOutSec;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -486,9 +485,6 @@ SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework13MWAdapterBase_")
 - (void)setDelegateWithDelegate:(id <MWAdapterDelegate> _Nullable)delegate;
 - (void)setRootViewControllerWithRootViewController:(UIViewController * _Nullable)rootViewController;
 - (void)setNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
-@optional
-- (void)setNAMNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
-@required
 - (BOOL)loadAdWithAdRequestInfo:(MMAdRequestInfo * _Nonnull)adRequestInfo SWIFT_WARN_UNUSED_RESULT;
 - (UIView * _Nullable)getAdViewWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)showAdWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
@@ -556,6 +552,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /// SDK 정보를 초기화 한다.
 - (void)initSDK SWIFT_METHOD_FAMILY(none);
 - (void)enableLog:(BOOL)enable;
+- (void)enableDebugMode:(BOOL)enable;
 - (void)setAdPopcornAppKey:(NSString * _Nonnull)appKey;
 - (void)setLevelPlaySDKAppKey:(NSString * _Nonnull)appKey;
 - (void)setPangleAppIdWithAppId:(NSString * _Nonnull)appId;
@@ -1205,7 +1202,6 @@ SWIFT_CLASS("_TtC21MobWithADSDKFramework9MMPopUpAd")
 SWIFT_CLASS("_TtC21MobWithADSDKFramework10MMSplashAd")
 @interface MMSplashAd : NSObject
 @property (nonatomic, weak) id <MMSplashAdDelegate> _Nullable delegate;
-@property (nonatomic) BOOL useFullScreenAd;
 @property (nonatomic) NSInteger timeOutSec;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -1226,9 +1222,6 @@ SWIFT_PROTOCOL("_TtP21MobWithADSDKFramework13MWAdapterBase_")
 - (void)setDelegateWithDelegate:(id <MWAdapterDelegate> _Nullable)delegate;
 - (void)setRootViewControllerWithRootViewController:(UIViewController * _Nullable)rootViewController;
 - (void)setNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
-@optional
-- (void)setNAMNativeAdViewItemWithNativeAdViewItem:(NativeAdViewItem * _Nullable)nativeAdViewItem;
-@required
 - (BOOL)loadAdWithAdRequestInfo:(MMAdRequestInfo * _Nonnull)adRequestInfo SWIFT_WARN_UNUSED_RESULT;
 - (UIView * _Nullable)getAdViewWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)showAdWithType:(enum MMAdType)type SWIFT_WARN_UNUSED_RESULT;
@@ -1296,6 +1289,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 /// SDK 정보를 초기화 한다.
 - (void)initSDK SWIFT_METHOD_FAMILY(none);
 - (void)enableLog:(BOOL)enable;
+- (void)enableDebugMode:(BOOL)enable;
 - (void)setAdPopcornAppKey:(NSString * _Nonnull)appKey;
 - (void)setLevelPlaySDKAppKey:(NSString * _Nonnull)appKey;
 - (void)setPangleAppIdWithAppId:(NSString * _Nonnull)appId;
